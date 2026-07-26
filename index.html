@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Клиника доказательной медицины «Аметист»: взрослые и детские врачи, диагностика и забота без лишних назначений.">
+  <meta name="theme-color" content="#4c3157">
+  <title>Аметист — клиника доказательной медицины</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Prata&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <header class="site-header" data-header>
+    <div class="topbar container"><span>Ежедневно 08:00–20:00</span><a href="tel:+78442220220">+7 (8442) 220-220</a><span class="topbar__address">Волгоград, ул. Пархоменко, 12</span></div>
+    <nav class="nav container" aria-label="Основная навигация">
+      <a class="logo" href="#top" aria-label="Аметист, на главную"><span class="logo__mark" aria-hidden="true">✦</span><span><strong>Аметист</strong><small>частная клиника</small></span></a>
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span></button>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#directions">Направления</a><a href="#doctors">Врачи</a><a href="#about">О клинике</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+      </div>
+      <button class="button button--compact open-modal" type="button">Записаться</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero__grid">
+        <div class="hero__content reveal">
+          <p class="eyebrow">Медицина с уважением к вам</p>
+          <h1>Здоровье — не повод <em>для тревоги</em></h1>
+          <p class="hero__lead">Разбираемся, объясняем и помогаем. Без лишних назначений — на основе современных клинических рекомендаций.</p>
+          <div class="hero__actions"><button class="button open-modal" type="button">Выбрать врача</button><a class="button button--ghost" href="#directions">Наши направления</a></div>
+          <div class="hero__facts" aria-label="Кратко о клинике"><div><strong>14</strong><span>врачей</span></div><div><strong>6+</strong><span>направлений</span></div><div><strong>40 мин</strong><span>на приём</span></div></div>
+        </div>
+        <div class="hero__visual reveal" aria-label="Светлый современный интерьер клиники">
+          <div class="hero__placeholder"><span class="hero__orb"></span><div class="hero__chair"></div><div class="hero__plant">⌇</div></div>
+          <div class="hero__note"><span>✦</span><p><strong>Вам всё объяснят</strong><br>простым и понятным языком</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section directions" id="directions">
+      <div class="container"><div class="section-heading reveal"><div><p class="eyebrow">Чем мы можем помочь</p><h2>Направления клиники</h2></div><p>Собрали команду специалистов, которые видят не отдельный симптом, а человека целиком.</p></div>
+        <div class="direction-grid">
+          <article class="direction-card reveal"><span class="icon">♡</span><h3>Кардиология</h3><p>Диагностика и забота о здоровье сердца и сосудов.</p><a href="#doctors">Найти врача <span>→</span></a></article>
+          <article class="direction-card reveal"><span class="icon">✦</span><h3>Терапия</h3><p>Первичный приём, чекапы и план лечения без лишнего.</p><a href="#doctors">Найти врача <span>→</span></a></article>
+          <article class="direction-card reveal"><span class="icon">⌁</span><h3>Ревматология</h3><p>Помощь при заболеваниях суставов и соединительной ткани.</p><a href="#doctors">Найти врача <span>→</span></a></article>
+          <article class="direction-card reveal"><span class="icon">◉</span><h3>УЗ-диагностика</h3><p>Точные исследования на современном оборудовании.</p><a href="#doctors">Найти врача <span>→</span></a></article>
+          <article class="direction-card reveal"><span class="icon">⌇</span><h3>Неврология</h3><p>Лечение головной боли, головокружений и боли в спине.</p><a href="#doctors">Найти врача <span>→</span></a></article>
+          <article class="direction-card reveal"><span class="icon">○</span><h3>Эндокринология</h3><p>Забота о гормональном здоровье и обмене веществ.</p><a href="#doctors">Найти врача <span>→</span></a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section doctors" id="doctors"><div class="container">
+      <div class="section-heading reveal"><div><p class="eyebrow">Команда «Аметиста»</p><h2>Врачи, которым доверяют</h2></div><p>Экспертность, эмпатия и решения, которые принимаются вместе с пациентом.</p></div>
+      <div class="filters" role="group" aria-label="Фильтр врачей"><button class="filter active" data-filter="all">Все врачи</button><button class="filter" data-filter="therapy">Терапия</button><button class="filter" data-filter="neuro">Неврология</button><button class="filter" data-filter="children">Детям</button><button class="filter" data-filter="women">Женское здоровье</button><button class="filter" data-filter="psychology">Психология</button></div>
+      <div class="doctor-grid" data-doctor-grid></div>
+      <button class="button button--ghost doctor-more" type="button" data-doctor-more>Показать всех врачей</button>
+    </div></section>
+
+    <section class="section about" id="about"><div class="container about__grid">
+      <div class="about__intro reveal"><p class="eyebrow">Почему «Аметист»</p><h2>Спокойно о самом важном</h2><p>Мы создали место, где медицинская точность сочетается с человеческим отношением. Здесь можно не торопиться, задавать вопросы и понимать каждое решение.</p><button class="text-button open-modal" type="button">Познакомиться на приёме →</button></div>
+      <div class="benefits">
+        <article class="benefit reveal"><b>01</b><div><h3>Доказательный подход</h3><p>Назначаем только то, что имеет подтверждённую эффективность.</p></div></article><article class="benefit reveal"><b>02</b><div><h3>Приём без спешки</h3><p>Достаточно времени на разговор, осмотр и ваши вопросы.</p></div></article><article class="benefit reveal"><b>03</b><div><h3>Сильная команда</h3><p>Врачи обсуждают сложные случаи и работают сообща.</p></div></article><article class="benefit reveal"><b>04</b><div><h3>Понятный план</h3><p>После приёма вы знаете, что делать и зачем.</p></div></article><article class="benefit reveal"><b>05</b><div><h3>Всё в одном месте</h3><p>Консультации, функциональная и УЗ-диагностика.</p></div></article><article class="benefit reveal"><b>06</b><div><h3>Забота после приёма</h3><p>Остаёмся на связи и сопровождаем ваше лечение.</p></div></article>
+      </div>
+    </div></section>
+
+    <section class="section reviews" id="reviews"><div class="container"><div class="section-heading reveal"><div><p class="eyebrow">Говорят пациенты</p><h2>Слова, которыми делятся</h2></div><div class="review-score"><strong>4,9</strong><span>★★★★★<br>средняя оценка</span></div></div>
+      <div class="review-grid"><blockquote class="review reveal"><div class="stars">★★★★★</div><p>«Впервые после приёма не осталось тревоги. Врач внимательно выслушал, объяснил результаты и не назначил ничего лишнего».</p><footer><span>АК</span><div><strong>Анна К.</strong><small>приём кардиолога</small></div></footer></blockquote><blockquote class="review reveal"><div class="stars">★★★★★</div><p>«Очень бережное отношение к ребёнку. Сын вышел из кабинета спокойным, а мы получили чёткий и понятный план».</p><footer><span>МС</span><div><strong>Мария С.</strong><small>приём педиатра</small></div></footer></blockquote><blockquote class="review reveal"><div class="stars">★★★★★</div><p>«Красивое спокойное пространство и профессиональная команда. Чувствуешь, что здесь действительно хотят помочь».</p><footer><span>ОВ</span><div><strong>Олег В.</strong><small>приём терапевта</small></div></footer></blockquote></div>
+      <p class="legal-note">Отзывы публикуются с согласия пациентов. Результаты лечения индивидуальны.</p>
+    </div></section>
+
+    <section class="section contacts" id="contacts"><div class="container contacts__card reveal"><div class="contacts__info"><p class="eyebrow">Мы рядом</p><h2>Приходите в «Аметист»</h2><address><div><span>Адрес</span><strong>Волгоград, ул. Пархоменко, 12</strong></div><div><span>Телефон</span><a href="tel:+78442220220">+7 (8442) 220-220</a></div><div><span>Режим работы</span><strong>Ежедневно, 08:00–20:00</strong></div></address><button class="button button--light open-modal" type="button">Записаться на приём</button></div><div class="map" aria-label="Схема расположения клиники"><div class="map__roads"></div><div class="map__pin"><span>✦</span><b>Аметист</b></div><p>5 минут от центра<br><a href="https://yandex.ru/maps/" target="_blank" rel="noopener">Построить маршрут ↗</a></p></div></div></section>
+  </main>
+
+  <footer class="footer"><div class="container footer__grid"><div><a class="logo logo--light" href="#top"><span class="logo__mark">✦</span><span><strong>Аметист</strong><small>частная клиника</small></span></a><p>Медицина с уважением к вам.</p></div><div><h3>Клиника</h3><a href="#directions">Направления</a><a href="#doctors">Врачи</a><a href="#about">О нас</a></div><div><h3>Пациентам</h3><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a><a href="#">Документы</a></div><div><h3>Связаться</h3><a href="tel:+78442220220">+7 (8442) 220-220</a><a href="mailto:hello@ametist-clinic.ru">hello@ametist-clinic.ru</a></div></div><div class="container footer__bottom"><span>© 2026 Клиника «Аметист»</span><a href="#">Политика конфиденциальности</a><span>Имеются противопоказания. Необходима консультация специалиста.</span></div></footer>
+
+  <dialog class="modal" aria-labelledby="modal-title"><button class="modal__close" type="button" aria-label="Закрыть">×</button><p class="eyebrow">Запись в клинику</p><h2 id="modal-title">Мы вам перезвоним</h2><p>Оставьте контакты — администратор свяжется с вами и подберёт удобное время.</p><form><label>Ваше имя<input name="name" autocomplete="name" required placeholder="Как к вам обращаться"></label><label>Телефон<input name="phone" type="tel" autocomplete="tel" required placeholder="+7 (___) ___-__-__"></label><label class="consent"><input type="checkbox" required> <span>Согласен на обработку персональных данных</span></label><button class="button" type="submit">Отправить заявку</button></form><div class="form-success" hidden><span>✓</span><h3>Спасибо!</h3><p>Мы скоро свяжемся с вами.</p></div></dialog>
+</body>
+</html>
