@@ -18,25 +18,39 @@ const doctors=[
 ['Исакова','Светлана Сергеевна','Терапевт, гастроэнтеролог','','therapy']
 ];
 const grid=document.querySelector('[data-doctor-grid]'),more=document.querySelector('[data-doctor-more]');
-function render(filter='all',expanded=false){const list=doctors.filter(d=>filter==='all'||d[4]===filter);grid.innerHTML=list.map((d,i)=>`<article class="doctor ${!expanded&&i>7?'hidden':''}"><div class="doctor-portrait">${d[5]?`<img src="${d[5]}" alt="${d[0]} ${d[1]}" loading="lazy" decoding="async">`:`<span class="doctor-initials">${d[0][0]}${d[1][0]}</span>`}</div><div class="doctor-info"><h3>${d[0]}<br>${d[1]}</h3><p>${d[2]}</p><small>${d[3]||'Специалист клиники «Аметист»'}</small><div class="doctor-info__actions">${d[6]?`<button class="js-profile" type="button" data-profile="${d[6]}">Подробнее</button>`:''}<button class="js-book" type="button">Записаться ↗</button></div></div></article>`).join('');more.hidden=list.length<=8;bindBooking();bindProfiles()}
+function portraitMarkup(doctor){
+ const fallback=doctor[5];
+ if(!fallback)return `<span class="doctor-initials">${doctor[0][0]}${doctor[1][0]}</span>`;
+ const image=`<img src="${fallback}" data-photo-fallback="${fallback}" alt="${doctor[0]} ${doctor[1]}" loading="lazy" decoding="async">`;
+ return doctor[6]?`<button class="doctor-photo js-profile" type="button" data-profile="${doctor[6]}" aria-label="Кратко о враче ${doctor[0]} ${doctor[1]}">${image}</button>`:image;
+}
+function render(filter='all',expanded=false){
+ const list=doctors.filter(doctor=>filter==='all'||doctor[4]===filter);
+ grid.innerHTML=list.map((doctor,index)=>`<article class="doctor ${!expanded&&index>7?'hidden':''}"><div class="doctor-portrait">${portraitMarkup(doctor)}</div><div class="doctor-info"><h3>${doctor[6]?`<button class="doctor-name js-profile" type="button" data-profile="${doctor[6]}">${doctor[0]}<br>${doctor[1]}</button>`:`${doctor[0]}<br>${doctor[1]}`}</h3><p>${doctor[2]}</p><small>${doctor[3]||'Специалист клиники «Аметист»'}</small><div class="doctor-info__actions">${doctor[6]?`<button class="js-profile" type="button" data-profile="${doctor[6]}">Кратко о враче</button>`:''}<button class="js-book" type="button">Записаться ↗</button></div></div></article>`).join('');
+ more.hidden=list.length<=8;activatePreferredPhotos(grid);bindBooking();bindProfiles();
+}
+function activatePreferredPhotos(scope=document){
+ scope.querySelectorAll('img[data-photo-fallback]').forEach(img=>{
+  const png=img.dataset.photoFallback.replace(/\.svg$/i,'.png');
+  const probe=new Image();probe.onload=()=>{img.src=png};probe.src=png;
+ });
+}
 render();
 document.querySelectorAll('.filters button').forEach(button=>button.addEventListener('click',()=>{document.querySelector('.filters .active').classList.remove('active');button.classList.add('active');render(button.dataset.filter)}));
 more.addEventListener('click',()=>{document.querySelectorAll('.doctor.hidden').forEach(card=>card.classList.remove('hidden'));more.hidden=true});
 const menuButton=document.querySelector('.menu-btn'),menu=document.querySelector('#menu');menuButton.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')==='true';menuButton.setAttribute('aria-expanded',String(!open));menu.classList.toggle('open')});menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}));
-function profileSection(title,content){return `<section><h3>${title}</h3>${content}</section>`}
+const modal=document.querySelector('.modal'),profile=document.querySelector('[data-doctor-profile]');
 function openProfile(key){
  const data=doctorProfiles[key];if(!data)return;
- profile.querySelector('[data-profile-photo]').src=data.photo;profile.querySelector('[data-profile-photo]').alt=data.name;
+ const photo=profile.querySelector('[data-profile-photo]');photo.src=data.photo;photo.dataset.photoFallback=data.photo;photo.alt=data.name;activatePreferredPhotos(profile);
  profile.querySelector('[data-profile-specialties]').textContent=data.specialties;profile.querySelector('[data-profile-name]').textContent=data.name;profile.querySelector('[data-profile-intro]').textContent=data.intro;
- const facts=[...data.facts,['Стоимость приёма','5 000 ₽'],['Онлайн-консультация','5 000 ₽']].map(([term,value])=>`<div><dt>${term}</dt><dd>${value}</dd></div>`).join('');
- const list=items=>`<ul class="doctor-profile__list">${items.map(item=>`<li>${item}</li>`).join('')}</ul>`;
- const paragraphs=items=>items.map(item=>`<p>${item}</p>`).join('');
- const education=`<ul class="doctor-profile__timeline">${data.education.map(([title,place])=>`<li><strong>${title}</strong><span>${place}</span></li>`).join('')}</ul>`;
- const faq=`<div class="doctor-profile__faq">${data.faq.map(([question,answer])=>`<details><summary>${question}</summary><p>${answer}</p></details>`).join('')}</div>`;
- profile.querySelector('[data-profile-body]').innerHTML=profileSection('Краткая информация',`<dl class="doctor-profile__facts">${facts}</dl>`)+profileSection('Профессиональная экспертиза',paragraphs(data.expertise))+`<blockquote class="doctor-profile__quote">«${data.quote}»</blockquote>`+profileSection('Специализация',list(data.specialization))+profileSection('С какими вопросами можно обратиться',list(data.reasons))+profileSection('Образование',education)+profileSection('Повышение квалификации',`<p>${data.training}</p>`)+profileSection('Опыт работы',`<p>${data.experience}</p>`)+(data.science?profileSection('Научная и профессиональная деятельность',`<p>${data.science}</p>`):'')+profileSection('Часто задаваемые вопросы',faq);
- profile.scrollTop=0;profile.showModal();
+ profile.querySelector('[data-profile-facts]').innerHTML=[...data.facts.slice(1,4),['Стоимость приёма','5 000 ₽']].map(([term,value])=>`<div><dt>${term}</dt><dd>${value}</dd></div>`).join('');
+ profile.querySelector('[data-profile-link]').href=data.page;profile.showModal();
 }
-const modal=document.querySelector('.modal'),profile=document.querySelector('[data-doctor-profile]');function bindBooking(){document.querySelectorAll('.js-book').forEach(button=>button.onclick=()=>modal.showModal())}function bindProfiles(){document.querySelectorAll('.js-profile').forEach(button=>button.onclick=()=>openProfile(button.dataset.profile))}bindBooking();bindProfiles();document.querySelector('.modal-close').addEventListener('click',()=>modal.close());modal.addEventListener('click',event=>{if(event.target===modal)modal.close()});document.querySelector('[data-profile-close]').addEventListener('click',()=>profile.close());profile.addEventListener('click',event=>{if(event.target===profile)profile.close()});document.querySelector('.js-profile-book').addEventListener('click',()=>{profile.close();modal.showModal()});modal.querySelector('form').addEventListener('submit',event=>{event.preventDefault();event.currentTarget.hidden=true;modal.querySelector('.success').hidden=false});
+function bindBooking(){document.querySelectorAll('.js-book').forEach(button=>button.onclick=()=>modal.showModal())}
+function bindProfiles(){document.querySelectorAll('.js-profile').forEach(button=>button.onclick=()=>openProfile(button.dataset.profile))}
+bindBooking();bindProfiles();
+document.querySelector('.modal-close').addEventListener('click',()=>modal.close());modal.addEventListener('click',event=>{if(event.target===modal)modal.close()});document.querySelector('[data-profile-close]').addEventListener('click',()=>profile.close());profile.addEventListener('click',event=>{if(event.target===profile)profile.close()});document.querySelector('.js-profile-book').addEventListener('click',()=>{profile.close();modal.showModal()});modal.querySelector('form').addEventListener('submit',event=>{event.preventDefault();event.currentTarget.hidden=true;modal.querySelector('.success').hidden=false});
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(item=>observer.observe(item));
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,prism=document.querySelector('.prism-wrap');if(!reduce)document.querySelector('.hero').addEventListener('pointermove',event=>{const x=(event.clientX/innerWidth-.5)*12,y=(event.clientY/innerHeight-.5)*12;prism.style.transform=`translateY(-50%) rotateY(${x}deg) rotateX(${-y}deg)`});
 addEventListener('scroll',()=>document.querySelector('.header').classList.toggle('scrolled',scrollY>20),{passive:true});

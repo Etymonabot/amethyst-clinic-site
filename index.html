@@ -15,18 +15,21 @@
 <section class="contact" id="contacts"><div class="shell contact-grid"><div class="reveal"><p class="kicker">Запись на приём</p><h2>Начните с разговора</h2><p>Администратор поможет выбрать специалиста и удобное время.</p><button class="btn btn--light js-book">Записаться на приём <span>↗</span></button></div><div class="contact-data reveal"><div><span>Город</span><strong>Москва</strong><small>Адрес уточняется</small></div><div><span>Телефон</span><a href="tel:+74950000000">+7 495 000-00-00</a></div><div><span>Режим работы</span><strong>Ежедневно</strong><small>08:00–20:00</small></div></div></div></section>
 </main>
 <footer><div class="shell footer-grid"><div><a class="brand brand--light" href="#top"><img src="icons/logo-srez.svg" alt=""><span>Аметист</span></a><p>Разумная доказательная медицина<br>для всей семьи.</p></div><div><a href="#specialties">Направления</a><a href="#doctors">Врачи</a><a href="#principles">О клинике</a></div><div><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a><a href="#">Документы</a></div></div><div class="shell legal"><span>© 2026 Аметист</span><span>Имеются противопоказания. Необходима консультация специалиста.</span><a href="#">Политика конфиденциальности</a></div></footer>
-<dialog class="doctor-profile" data-doctor-profile aria-labelledby="doctor-profile-title">
-  <button class="modal-close" type="button" data-profile-close aria-label="Закрыть профиль врача">×</button>
-  <header class="doctor-profile__hero">
+<dialog class="doctor-profile doctor-profile--preview" data-doctor-profile aria-labelledby="doctor-profile-title">
+  <button class="modal-close" type="button" data-profile-close aria-label="Закрыть информацию о враче">×</button>
+  <div class="doctor-preview">
     <img data-profile-photo src="" alt="">
-    <div>
+    <div class="doctor-preview__content">
       <p class="kicker" data-profile-specialties></p>
       <h2 id="doctor-profile-title" data-profile-name></h2>
       <p class="doctor-profile__intro" data-profile-intro></p>
-      <button class="btn js-profile-book" type="button">Записаться на приём <span>↗</span></button>
+      <dl class="doctor-preview__facts" data-profile-facts></dl>
+      <div class="doctor-preview__actions">
+        <a class="btn" data-profile-link href="">Подробнее <span>→</span></a>
+        <button class="btn btn--quiet js-profile-book" type="button">Записаться</button>
+      </div>
     </div>
-  </header>
-  <div class="doctor-profile__body" data-profile-body></div>
+  </div>
 </dialog>
 <dialog class="modal" aria-labelledby="modal-title"><button class="modal-close" aria-label="Закрыть">×</button><p class="kicker">Запись в клинику</p><h2 id="modal-title">Подберём врача<br>и удобное время</h2><p>Оставьте контакты — администратор перезвонит вам.</p><form><label>Имя<input name="name" autocomplete="name" required placeholder="Как к вам обращаться"></label><label>Телефон<input name="phone" type="tel" autocomplete="tel" required placeholder="+7 900 000-00-00"></label><label class="check"><input type="checkbox" required><span>Согласен на обработку персональных данных</span></label><button class="btn" type="submit">Отправить заявку <span>↗</span></button></form><div class="success" hidden><b>Готово</b><p>Мы скоро свяжемся с вами.</p></div></dialog>
 </body></html>
