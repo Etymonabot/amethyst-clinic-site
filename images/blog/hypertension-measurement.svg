@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">Домашнее измерение артериального давления</title>
+  <desc id="desc">Абстрактная редакционная композиция с экраном тонометра и линией измерения</desc>
+  <rect width="1400" height="900" fill="#e9e5dc"/>
+  <circle cx="1110" cy="190" r="245" fill="#d8d0da" opacity=".72"/>
+  <path d="M-80 765C240 590 480 725 730 505s410-275 760-162" fill="none" stroke="#756c7a" stroke-width="2" opacity=".38"/>
+  <path d="M-45 815C285 640 515 785 785 548s405-260 690-190" fill="none" stroke="#fff" stroke-width="38" opacity=".42"/>
+  <g transform="translate(425 205)">
+    <rect width="550" height="480" rx="48" fill="#f7f4ed" stroke="#302f31" stroke-width="2"/>
+    <rect x="78" y="72" width="394" height="220" rx="18" fill="#302f31"/>
+    <text x="115" y="180" fill="#f7f4ed" font-family="Arial, sans-serif" font-size="82">138</text>
+    <text x="322" y="180" fill="#b9b2bc" font-family="Arial, sans-serif" font-size="28">SYS</text>
+    <text x="115" y="255" fill="#f7f4ed" font-family="Arial, sans-serif" font-size="58">88</text>
+    <text x="322" y="250" fill="#b9b2bc" font-family="Arial, sans-serif" font-size="28">DIA</text>
+    <circle cx="275" cy="382" r="44" fill="none" stroke="#756c7a" stroke-width="2"/>
+    <circle cx="275" cy="382" r="8" fill="#756c7a"/>
+  </g>
+  <g fill="#302f31" font-family="Arial, sans-serif">
+    <text x="85" y="105" font-size="22" letter-spacing="5">АМЕТИСТ · ЗНАНИЯ</text>
+    <text x="85" y="835" font-size="20">Измерение · наблюдение · решение вместе с врачом</text>
+  </g>
+</svg>

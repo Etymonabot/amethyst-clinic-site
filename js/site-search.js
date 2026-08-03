@@ -1,0 +1,13 @@
+(() => {
+  const root=document.body.dataset.root||'';
+  const host=document.querySelector('.nav')||document.querySelector('.doctor-page__nav')||document.querySelector('.blog-nav');
+  if(!host||typeof siteSearchIndex==='undefined')return;
+  const button=document.createElement('button');button.className='site-search-button';button.type='button';button.setAttribute('aria-label','Поиск по сайту');button.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><span>Поиск</span>';
+  const nav=host.querySelector('nav');host.insertBefore(button,nav||host.lastElementChild);
+  const dialog=document.createElement('dialog');dialog.className='site-search';dialog.setAttribute('aria-labelledby','site-search-title');dialog.innerHTML='<button class="modal-close" type="button" aria-label="Закрыть поиск">×</button><p class="kicker">Поиск по сайту</p><h2 id="site-search-title">Что вы ищете?</h2><label class="site-search__field"><span class="sr-only">Поисковый запрос</span><input type="search" autocomplete="off" placeholder="Врач, направление или статья"></label><p class="site-search__status" aria-live="polite"></p><div class="site-search__results"></div>';
+  document.body.append(dialog);
+  const input=dialog.querySelector('input'),results=dialog.querySelector('.site-search__results'),status=dialog.querySelector('.site-search__status');
+  const normalize=value=>value.toLocaleLowerCase('ru').replace(/ё/g,'е').trim();
+  function render(){const query=normalize(input.value);if(query.length<2){results.innerHTML='';status.textContent='Введите не менее двух символов';return}const words=query.split(/\s+/);const matches=siteSearchIndex.filter(item=>{const haystack=normalize(`${item.title} ${item.description} ${item.keywords||''}`);return words.every(word=>haystack.includes(word))});status.textContent=matches.length?`Найдено: ${matches.length}`:'Ничего не найдено. Попробуйте изменить запрос.';results.innerHTML='';matches.forEach(item=>{const link=document.createElement('a');link.className='site-search__result';link.href=root+item.url;const meta=document.createElement('span');meta.textContent=item.type;const title=document.createElement('strong');title.textContent=item.title;const description=document.createElement('small');description.textContent=item.description;link.append(meta,title,description);results.append(link)})}
+  input.addEventListener('input',render);button.addEventListener('click',()=>{dialog.showModal();requestAnimationFrame(()=>input.focus())});dialog.querySelector('.modal-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+})();

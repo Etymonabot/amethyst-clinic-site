@@ -12,10 +12,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Onest:wght@400;500;600&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/doctor-profiles.js" defer></script>
+  <script src="../js/search-index.js" defer></script>
+  <script src="../js/site-search.js" defer></script>
+  <script src="../js/blog-articles.js" defer></script>
   <script src="../js/doctor-page.js" defer></script>
 </head>
-<body class="doctor-page" data-doctor-key="kalinina">
-  <header class="doctor-page__nav"><a class="brand" href="../index.html"><img src="../icons/logo-srez.svg" alt=""><span>Аметист</span></a><a class="doctor-page__back" href="../index.html#doctors">← Все врачи</a></header>
+<body class="doctor-page" data-root="../" data-doctor-key="kalinina">
+  <header class="doctor-page__nav"><a class="brand" href="../index.html"><img src="../icons/logo-srez.svg" alt=""><span>Аметист</span></a><nav aria-label="Навигация профиля"><a href="../blog/index.html">Блог</a><a class="doctor-page__back" href="../index.html#doctors">← Все врачи</a></nav></header>
   <main>
     <section class="doctor-page__hero">
       <div class="doctor-page__portrait"><img data-doctor-photo src="" alt=""></div>
